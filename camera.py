@@ -59,17 +59,19 @@ class App:
         # Neu khong phai number thi iterater ve 0
         if event.char == '\r':
             if self.iteration == 10:
+                print("While iteration == 10")
                 self.get_image()
                 self.iteration = 0
                 print(self.card_code)
                 self.window.unbind('<Key>')
                 self.text.configure(state='normal')
                 self.text.focus()
-        if event.char < '0' or event.char > '9':
-            self.iteration = 0
         else:
-            self.iteration += 1
-            self.card_code += event.char
+            if event.char < '0' or event.char > '9':
+                self.iteration = 0
+            else:
+                self.iteration += 1
+                self.card_code += event.char
             
 
     def check(self, *args):
@@ -101,13 +103,15 @@ class App:
         self.window.after(self.delay, self.update)
 
     def get_text(self, e):
-        self.iteration = 0
+        print("This is get_text()")
+        print(str(self.iteration))
         user_input = self.text.get()
         self.image_text(user_input)
         self.var.set('')
         self.text.configure(state='disabled')
-        self.reset_binding()
         self.card_code = ""
+        self.window.focus()
+        self.reset_binding()
 
     def reset_binding(self):
         self.text.bind('<Return>', func = self.get_text)

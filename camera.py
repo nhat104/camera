@@ -90,7 +90,7 @@ class App:
         cv2.imwrite(self.path + self.card_code + '.jpg', frame)
 
     def image_text(self, student_code):
-        cv2.putText(img = self.current_frame, text = student_code, org = (50, 50), fontFace = cv2.FONT_HERSHEY_SIMPLEX, 
+        cv2.putText(img = self.current_frame, text = student_code, org = (450, 470), fontFace = cv2.FONT_HERSHEY_SIMPLEX, 
                     color = (255, 0, 0), fontScale = 1, thickness = 2, lineType = cv2.LINE_AA)
         cv2.imwrite(self.path + self.card_code + '_' + student_code + '.jpg', self.current_frame)
 
